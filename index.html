@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>热搜</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js"></script>
+
+</head>
+
+<body>
+    <div id="box">
+        <h2>新闻热搜</h2>
+    </div>
+    <script>
+//数据每天都会不一样
+        var str = ""
+        $.ajax({
+            type: 'GET',
+            url: 'https://api.vvhan.com/api/hotlist?type=baiduRD',
+            success: function (res) {
+                res.data.forEach(function (item, index) {
+                    str += `
+    <div>${item.title}</div>
+    <div>${item.desc}</div>
+    <div>${item.hot}</div>
+
+                        
+                        `
+                    box.innerHTML = str;
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>
